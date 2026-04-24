@@ -2,27 +2,27 @@
 
 多Agent协作的智能行业分析系统，支持微信公众号实时数据爬取，通过优化设计最大化节省token使用。
 
-## ✨ 核心特性
+## 核心特性
 
-- 🤖 **5个专业Agent协作**：从需求分析到报告生成的完整流程
-- 🎯 **交互式工作流** 🆕：Planner生成计划后用户可确认/修改，Researcher生成检索策略后用户可确认/修改
-- 📱 **多数据源支持** 🆕：
+- **5个专业Agent协作**：从需求分析到报告生成的完整流程
+- **交互式工作流** 🆕：Planner生成计划后用户可确认/修改，Researcher生成检索策略后用户可确认/修改
+- **多数据源支持** 🆕：
   - 微信公众号爬取（指定公众号实时获取资讯）
   - Twitter/X 账号爬取（支持时间过滤和关键词筛选）
   - Claude Web Search（智能网页搜索）
   - 传统搜索引擎（Serper/Bing）
-- 🧠 **知识图谱构建**：自动提取实体、关系和洞察
-- 🔄 **Zep Cloud 集成** 🆕：知识图谱持久化存储、增量更新和历史读取
-- ⚡ **Token高效优化**：精心设计的数据传递策略
-- 🔍 **事实验证机制**：基于来源可靠度和交叉验证的置信度评分
+- **知识图谱构建**：自动提取实体、关系和洞察
+- **Zep Cloud 集成** 🆕：知识图谱持久化存储、增量更新和历史读取
+- **Token高效优化**：精心设计的数据传递策略
+- **事实验证机制**：基于来源可靠度和交叉验证的置信度评分
 
 ## 架构设计
 
 ### Agent组成
 1. **Planner**: 解析用户需求，根据5W拆解维度，支持行业信息嵌入
-   - 🆕 支持用户交互：生成计划后可由用户确认或修改
+   - 支持用户交互：生成计划后可由用户确认或修改
 2. **Researcher**: 关键词与检索式构建与扩展，执行信息检索和数据收集
-   - 🆕 支持用户交互：生成检索策略后可由用户确认或修改检索词和检索式
+   - 支持用户交互：生成检索策略后可由用户确认或修改检索词和检索式
 3. **Fact Checker**: 验证事实准确性和来源可靠性（动态confidence计算）
 4. **Ontology Builder**: 构建行业研究信息优化版知识图谱，分析实体关联（含详细属性和洞察）
 5. **Report Writer**: 基于验证的事实和本体生成报告，包含完整事实信息
@@ -60,20 +60,20 @@
 #### 1. 计划确认（Plan Confirmation）
 - **触发时机**: Planner Agent 生成研究计划后
 - **用户选项**:
-  - ✅ 确认并继续
-  - ✏️ 修改计划（输入修改后的 JSON）
-  - ❌ 取消分析
+  - 确认并继续
+  - 修改计划（输入修改后的 JSON）
+  - 取消分析
 - **启用方式**: `interactive_plan=True`（默认启用）
 - **禁用方式**: `--no-plan-confirm` 或 `interactive_plan=False`
 
 #### 2. 检索策略确认（Search Strategy Confirmation）
 - **触发时机**: Researcher Agent 生成检索策略后
 - **用户选项**:
-  - ✅ 确认并继续检索
-  - ✏️ 修改检索词组
-  - ✏️ 修改检索式
-  - ✏️ 同时修改两者
-  - ❌ 取消分析
+  - 确认并继续检索
+  - 修改检索词组
+  - 修改检索式
+  - 同时修改两者
+  - 取消分析
 - **启用方式**: `interactive_search=True`（默认启用）
 - **禁用方式**: `--no-search-confirm` 或 `interactive_search=False`
 
@@ -237,7 +237,7 @@ print(result["report"])
 
 ### 5. 使用示例
 
-#### 示例 1：基础分析（交互式，默认） 🆕
+#### 示例 1：基础分析（交互式，默认） 
 
 ```bash
 ./run.sh -q "分析人工智能在医疗领域的应用现状"
@@ -245,14 +245,14 @@ print(result["report"])
 # 用户可以选择：1) 确认继续 2) 修改 3) 取消
 ```
 
-#### 示例 2：完全自动执行（无交互） 🆕
+#### 示例 2：完全自动执行（无交互） 
 
 ```bash
 ./run.sh -q "新能源汽车市场分析" --no-interactive
 # 完全自动执行，不等待用户确认，适合脚本调用
 ```
 
-#### 示例 3：仅确认计划，自动执行检索 🆕
+#### 示例 3：仅确认计划，自动执行检索 
 
 ```bash
 ./run.sh -q "AI芯片行业分析" --no-search-confirm
@@ -295,7 +295,7 @@ print(result["report"])
 ./run.sh -q "AI行业Q2分析" -s "ai_industry_2026" -d "2026-04-01到2026-06-30" --no-interactive
 ```
 
-#### 示例 8：Twitter 账号爬取 🆕
+#### 示例 8：Twitter 账号爬取 
 
 ```bash
 # 爬取指定 Twitter 账号（AI 领域意见领袖）
@@ -313,7 +313,7 @@ print(result["report"])
 
 ### 6. Python 代码调用
 
-#### 基础使用（交互式，默认） 🆕
+#### 基础使用（交互式，默认） 
 
 ```python
 from main import IndustryAnalyst
@@ -324,7 +324,7 @@ result = analyst.analyze("分析2026年AI大模型产业趋势")
 print(result["report"])
 ```
 
-#### 自动执行（禁用交互） 🆕
+#### 自动执行（禁用交互） 
 
 ```python
 from main import IndustryAnalyst
@@ -359,7 +359,7 @@ result = analyst.analyze(
 print(result["report"])
 ```
 
-#### 使用 Twitter 账号爬取 🆕
+#### 使用 Twitter 账号爬取 
 
 ```python
 from main import IndustryAnalyst
@@ -380,7 +380,7 @@ result = analyst.analyze(
 print(result["report"])
 ```
 
-#### 混合数据源（微信 + Twitter + 网页搜索）🆕
+#### 混合数据源（微信 + Twitter + 网页搜索）
 
 ```python
 from main import IndustryAnalyst
@@ -442,11 +442,11 @@ print(result2["report"])
 
 ### 支持的功能
 
-- ✅ 公众号搜索（模糊匹配）
-- ✅ 文章列表获取（分页支持）
-- ✅ 关键词过滤（标题+摘要）
-- ✅ 日期范围过滤
-- ✅ 自动格式化为研究数据
+- 公众号搜索（模糊匹配）
+- 文章列表获取（分页支持）
+- 关键词过滤（标题+摘要）
+- 日期范围过滤
+- 自动格式化为研究数据
 
 ### 常用公众号
 
@@ -456,7 +456,7 @@ print(result2["report"])
 
 详细文档：[HOW_TO_RUN.md](HOW_TO_RUN.md)
 
-## Twitter/X 账号爬取功能 🆕
+## Twitter/X 账号爬取功能 
 
 ### 获取 API 访问权限
 
@@ -470,9 +470,9 @@ print(result2["report"])
 4. 配置到 `.env` 文件：`TWITTER_BEARER_TOKEN=your_token`
 
 **优点**：
-- ✅ 免费使用
-- ✅ 官方支持，稳定可靠
-- ✅ 数据准确性高
+- 免费使用
+- 官方支持，稳定可靠
+- 数据准确性高
 
 #### 方式二：RapidAPI Twitter API（付费）
 
@@ -482,16 +482,16 @@ print(result2["report"])
 4. 配置到 `.env` 文件：`RAPIDAPI_KEY=your_key`
 
 **优点**：
-- ✅ 无需申请开发者账号
-- ✅ 按需付费，使用灵活
+- 无需申请开发者账号
+- 按需付费，使用灵活
 
 ### 支持的功能
 
-- ✅ 用户推文获取（指定账号）
-- ✅ 时间范围过滤（精确到日期）
-- ✅ 关键词过滤（可选）
-- ✅ 文本内容提取（不包含互动指标）
-- ✅ 批量账号爬取
+- 用户推文获取（指定账号）
+- 时间范围过滤（精确到日期）
+- 关键词过滤（可选）
+- 文本内容提取（不包含互动指标）
+- 批量账号爬取
 
 ### 常用 Twitter 账号
 
@@ -686,10 +686,10 @@ cp .env.example .env
 # 基础分析（交互式，默认）
 ./run.sh -q "分析AI芯片行业"
 
-# 完全自动执行（无交互）🆕
+# 完全自动执行（无交互）
 ./run.sh -q "分析AI芯片行业" --no-interactive
 
-# 仅确认计划，自动检索 🆕
+# 仅确认计划，自动检索 
 ./run.sh -q "分析AI芯片行业" --no-search-confirm
 
 # 深度分析（含公众号，交互式）
@@ -698,10 +698,10 @@ cp .env.example .env
 # 深度分析（含公众号，自动执行）
 ./run.sh -q "新能源汽车分析" -w "36氪,虎嗅APP" --no-interactive
 
-# 爬取 Twitter 账号 🆕
+# 爬取 Twitter 账号 
 ./run.sh -q "AI最新观点" -t "sama,ylecun" --no-interactive
 
-# 混合数据源（微信 + Twitter）🆕
+# 混合数据源（微信 + Twitter）
 ./run.sh -q "全球AI动态" -w "机器之心" -t "sama,ylecun" --no-interactive
 
 # 指定时间范围（自动执行）
@@ -727,7 +727,7 @@ analyst = IndustryAnalyst()
 result = analyst.analyze("你的查询")
 print(result["report"])
 
-# 自动执行（无交互）🆕
+# 自动执行（无交互）
 result = analyst.analyze(
     query="你的查询",
     interactive_plan=False,
@@ -737,7 +737,7 @@ result = analyst.analyze(
 # 完整配置（自动执行）
 analyst = IndustryAnalyst(
     wechat_api_key="your_key",
-    twitter_bearer_token="your_twitter_token",  # 🆕 Twitter 支持
+    twitter_bearer_token="your_twitter_token", 
     zep_api_key="your_key",
     enable_zep=True
 )
@@ -745,22 +745,22 @@ analyst = IndustryAnalyst(
 result = analyst.analyze(
     query="分析主题",
     wechat_accounts=["36氪", "虎嗅APP"],
-    twitter_accounts=["sama", "ylecun"],  # 🆕 Twitter 账号
+    twitter_accounts=["sama", "ylecun"],  
     date_range="2026-01-01到2026-04-15",
     session_id="my_session",
-    interactive_plan=False,      # 自动执行
+    interactive_plan=False,      
     interactive_search=False
 )
 ```
 
-## Zep Cloud 知识图谱 🆕
+## Zep Cloud 知识图谱 
 
 使用 [Zep Cloud](https://www.getzep.com/) 进行知识图谱的持久化存储和管理：
 
-- ✅ **自动存储**：每次分析后自动保存知识图谱
-- ✅ **增量更新**：后续分析自动合并到现有图谱
-- ✅ **历史读取**：撰写报告时自动利用历史知识
-- ✅ **Session 管理**：支持多个独立的分析会话
+- **自动存储**：每次分析后自动保存知识图谱
+- **增量更新**：后续分析自动合并到现有图谱
+- **历史读取**：撰写报告时自动利用历史知识
+- **Session 管理**：支持多个独立的分析会话
 
 详细文档：[ZEP_CLOUD_INTEGRATION.md](ZEP_CLOUD_INTEGRATION.md)
 
@@ -782,7 +782,7 @@ industry_analyst/
 ├── utils/                    # 工具模块
 │   ├── state_manager.py     # 状态管理
 │   ├── wechat_crawler.py    # 微信公众号爬取
-│   ├── twitter_crawler.py   # Twitter/X 爬取 🆕
+│   ├── twitter_crawler.py   # Twitter/X 爬取 
 │   ├── zep_graph_manager.py # Zep Cloud 集成
 │   ├── web_searcher.py      # 网页搜索
 │   └── claude_web_searcher.py # Claude Web Search
